@@ -99,7 +99,7 @@ function insertOne(obj) {
   });
 }
 
-function getAll() {
+function getAllIds() {
   return new Promise((resolve, reject) => {
     open()
       .then((client) => {
@@ -207,7 +207,7 @@ function deleteOne(id) {
 module.exports = {
   findOne,
   insertOne,
-  getAll,
+  getAllIds,
   putOne,
   deleteOne,
 };
