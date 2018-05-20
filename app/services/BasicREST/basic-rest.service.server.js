@@ -9,6 +9,11 @@ function constructErrorMessage(req, s) {
   };
 }
 
+function constructIdUrl(req, id) {
+  console.log(req);
+  return `http://${req.headers.host}${req.url}${id}`;
+}
+
 function postHandler(req, res) {
   if (Object.hasOwnProperty.call(req.body, 'uid') || Object.hasOwnProperty.call(req.body, '_id')) {
     res
@@ -60,11 +65,12 @@ function getOneHandler(req, res) {
 }
 
 function getAllHandler(req, res) {
-  connection.getAll()
+  connection.getAllIds()
     .then((docs) => {
+      const result = docs.map(val => ({ url: constructIdUrl(req, val.uid) }));
       res
         .status(200)
-        .json(docs);
+        .json(result);
     })
     .catch(() => {
       res
