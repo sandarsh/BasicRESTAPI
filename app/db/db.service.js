@@ -137,14 +137,15 @@ function putOne(obj) {
       .then(() => {
         open()
           .then((client) => {
+            const newObj = obj;
             const db = client.db(dbName);
             const collection = db.collection(collectionName);
-            const id = obj.uid;
-            delete obj.uid;
+            const id = newObj.uid;
+            delete newObj.uid;
             try {
               collection.findOneAndReplace(
                 { _id: new ObjectId(id) },
-                obj,
+                newObj,
                 { returnOriginal: false },
               )
                 .then((doc) => {
@@ -176,14 +177,15 @@ function putOne(obj) {
 
 function deleteOne(id) {
   return new Promise((resolve, reject) => {
-    id._id = new ObjectId(id.uid);
-    delete id.uid;
+    const newId = id;
+    newId._id = new ObjectId(newId.uid);
+    delete newId.uid;
     open()
       .then((client) => {
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
         try {
-          collection.deleteOne(id)
+          collection.deleteOne(newId)
             .then(() => {
               resolve();
               close(client);
