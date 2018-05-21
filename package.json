@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "pretest": "eslint --ignore-path .eslintignore .",
-    "test": "nodemon --watch . --exec 'mocha ./test/basic-rest.service.test.js || true'",
+    "test": "mocha ./test/basic-rest.service.test.js",
     "test_coverage": "nyc --reporter=html --reporter=text mocha",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
