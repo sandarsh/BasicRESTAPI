@@ -32,4 +32,6 @@ app.use('/', routes);
 const PORT = process.env.NODE_PORT || 3000;
 
 // Initialize server
-app.listen(PORT, () => { console.log('Listening on port:', PORT); });
+const server = app.listen(PORT, () => { console.log('Listening on port:', PORT); });
+
+module.exports = server;
