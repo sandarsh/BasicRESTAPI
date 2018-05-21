@@ -6,6 +6,7 @@
 const request = require('supertest');
 const { assert } = require('chai');
 const expect = require('chai').expect;
+// const should = require('chai').should;
 const async = require('async');
 
 
@@ -236,5 +237,61 @@ describe('Loading server for testing..', () => {
         assert.equal(body.object, 2);
         done();
     })
+  });
+  it('should respond with error PUT /api/objects/:uid if \'_id\' in request body', (done) => {
+    const url = `/api/objects/` + uid;
+    putObj._id = '1234';
+    putObj.uid = uid;
+    request(server)
+      .put(url)
+      .type('json')
+      .send(putObj)
+      .expect(400)
+      .end((err, res) => {
+        const body = res.body;
+        expect(body).to.be.an('object');
+        expect(body).to.have.all.keys('verb', 'url', 'message');
+        assert.equal(body.verb, 'PUT');
+        assert.equal(body.url.split('/')[3], 'api');
+        assert.equal(body.url.split('/')[4], 'objects');
+        assert.equal(body.url.split('/')[5], uid);
+        assert.equal(body.message, 'Invalid attribute \'_id\' in request');
+        done();
+      })
+  });
+  it('should respond with error to PUT /api/objects/:uid if uid in url and body mismatch ', (done) => {
+    const url = `/api/objects/` + uid;
+    let errObj = putObj;
+    errObj.uid = "1234";
+    delete errObj._id;
+    request(server)
+      .put(url)
+      .type('json')
+      .send(errObj)
+      .expect(400)
+      .end((err, res) => {
+        const body = res.body;
+        expect(body).to.be.an('object');
+        expect(body).to.have.all.keys('verb', 'url', 'message');
+        assert.equal(body.verb, 'PUT');
+        assert.equal(body.url.split('/')[3], 'api');
+        assert.equal(body.url.split('/')[4], 'objects');
+        assert.equal(body.url.split('/')[5], uid);
+        assert.equal(body.message, 'Id mismatch in body and url');
+        done();
+      })
+  });
+  it('should respond to DELETE /api/objects/:uid with 200 and object deleted', (done) => {
+    const url = `/api/objects/` + uid;
+    const resp = {};
+    request(server)
+      .delete(url)
+      .type('json')
+      .expect(200)
+      .end((err, res) => {
+        const body = res.body;
+        expect(body).to.be.empty;
+        done();
+      })
   });
 });
