@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes);
 
 // Port number to run the app on
-const PORT = process.env.NODE_PORT || 3000;
+const PORT = process.env.PORT || process.env.NODE_PORT || 3000;
 
 // Initialize server
 const server = app.listen(PORT, () => { console.log('Listening on port:', PORT); });
