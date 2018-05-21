@@ -5,11 +5,9 @@ const mongoClient = require('mongodb').MongoClient;
 // Form connection URL
 let url = 'mongodb://127.0.0.1:27017';
 if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'dev') {
-  url = `mongodb://
-  ${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@
-  ${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
+  url = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 }
-console.log('db url is ', url);
+
 const dbName = process.env.DB_NAME || 'test';
 const collectionName = process.env.DB_COLLECTION || 'test';
 
