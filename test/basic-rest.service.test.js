@@ -1,7 +1,7 @@
 /* eslint no-undef: 1, prefer-arrow-callback: 1 */
 /* eslint space-before-function-paren: 1, global-require: 1  */
 
-process.env.NODE_ENV = 'local';
+// process.env.NODE_ENV = 'test';
 
 const request = require('supertest');
 const { assert } = require('chai');
