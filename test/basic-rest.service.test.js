@@ -113,6 +113,8 @@ describe('Loading server for testing..', () => {
         if (body.length !== 0) {
           for (const i in body) {
             expect(body[i]).to.have.all.keys('url');
+            assert.equal(body[i].url.split('/')[3], 'api');
+            assert.equal(body[i].url.split('/')[4], 'objects');
           }
         }
         done();

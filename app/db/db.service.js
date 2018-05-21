@@ -1,4 +1,5 @@
 /* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }] */
+/* eslint max-len: 1 */
 const ObjectId = require('mongodb').ObjectID;
 const mongoClient = require('mongodb').MongoClient;
 
@@ -18,7 +19,7 @@ function open() {
         console.log('Error in opening server connection', err);
         reject(client);
       } else {
-        console.log('Server connection opened');
+        // console.log('Server connection opened');
         resolve(client);
       }
     });
@@ -30,7 +31,7 @@ function close(client) {
     if (err) {
       console.log('Error in closing connection', err);
     } else {
-      console.log('Server connection closed');
+      // console.log('Server connection closed');
     }
   });
 }
@@ -103,10 +104,7 @@ function getAllIds() {
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
         try {
-          collection.find(
-            {}, // Empty query to retrieve all elements
-            { _id: 1 },
-          )
+          collection.find({}, { _id: 1 })
             .toArray((err, arr) => {
               if (err) {
                 reject(err);
@@ -140,11 +138,7 @@ function putOne(obj) {
             const id = newObj.uid;
             delete newObj.uid;
             try {
-              collection.findOneAndReplace(
-                { _id: new ObjectId(id) },
-                newObj,
-                { returnOriginal: false },
-              )
+              collection.findOneAndReplace({ _id: new ObjectId(id) }, newObj, { returnOriginal: false })
                 .then((doc) => {
                   const { value } = doc;
                   value.uid = value._id;
