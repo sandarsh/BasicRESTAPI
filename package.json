@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "pretest": "eslint --ignore-path .eslintignore .",
-    "test_mocha": "mocha ./test/basic-rest.service.test.js",
+    "test_mocha": "mocha ./test/basic-rest.service.test.js || true'",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
+    "test_coverage": "nyc --reporter=html --reporter=text mocha",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
