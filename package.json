@@ -4,6 +4,7 @@
   "description": "Basic REST API ",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "pretest": "eslint --ignore-path .eslintignore .",
     "test_mocha": "mocha ./test/basic-rest.service.test.js || true'",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
