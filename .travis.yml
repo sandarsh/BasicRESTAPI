@@ -1,4 +1,11 @@
 language: node_js
 node_js:
-  - "stable"
-after_success: 'npm run coveralls'
+- stable
+branches:
+  only:
+  - master
+after_success: npm run coveralls
+deploy:
+  provider: heroku
+  api_key:
+    secure: n832Ym7sXejzjzZJGg06knuxKtsTGbSLkz4lSYCySl+cTY01i75RhQ8ziPa/u1YkU9JvBjo/YehNOUAJ9mHC0FCFg0eznruhSaXOcvibiV1qyqU5N3wLhZKjXdwcfrLEkWcvgv6wpqb/tBnSKQUc/bNVkZipz8bEj78aCk1uE9waSM+4zLzzT2ubfbj6/1hk9KOLCVPnAJ114IguzXQgXWqnypsr54rvEWl8KL0glWIZQ7F40b01JPqwllaOlWItwhYonJ8LrWfURkSAs+zM4k4thytDdRO0T+SNNkOZ+3yCrK7nDHVo+2fO4dN3sVzV8BJYdEAHVWq+LhNvIzYsoSn/KNFRA5lLm16ECM+gcp/iuYQCumQixD+FtrklkKakLuAmgX0mWSn+yAIbi/791g5oiEmnhz6YrrrkvQwXI5U5Y3+gaczWklZHZB2qwER7r+/9i2ULsGk3aPM0FmzBawiXAE6LIM0lAev1xs6ndP7v4vNvj5iGNq08S8nJowcfqwP2SpHlthBv/jo7q9PNn8XoNas+Z82MOZgK3GkRFmAh6b/XQ42HKbgplbJX7RXfo4KIbuHa8kqOpkVgLKW9qftk8Wnk2NKhqn50uccLYcfNR1wYO0QnFi58JhNc700jpJdEpWQb/Z6ReJK3nEbhD8l2WqxnOmhsL9p1T8ezWsk=
