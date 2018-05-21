@@ -10,7 +10,6 @@ function constructErrorMessage(req, s) {
 }
 
 function constructIdUrl(req, id) {
-  console.log(req);
   return `http://${req.headers.host}${req.url}${id}`;
 }
 
