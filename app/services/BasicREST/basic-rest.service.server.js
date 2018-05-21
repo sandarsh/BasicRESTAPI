@@ -10,7 +10,7 @@ function constructErrorMessage(req, s) {
 }
 
 function constructIdUrl(req, id) {
-  return `http://${req.headers.host}${req.url}${id}`;
+  return `http://${req.headers.host}${req.url}/${id}`;
 }
 
 function postHandler(req, res) {
