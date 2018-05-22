@@ -23,28 +23,6 @@ describe('DB service testing..', () => {
     utility: 'test',
     message: 'Object put'
   };
-  // it('should throw database connection error', (done) => {
-  //   const curr_env = process.env.NODE_ENV;
-  //   if (process.env.NODE_ENV === 'local') {
-  //     process.env.NODE_ENV = 'test';
-  //
-  //   } else {
-  //     process.env.NODE_ENV = 'local';
-  //   }
-  //   const faulty_connection = require('../app/db/db.service.js');
-  //   faulty_connection.open()
-  //     .then((client) => {
-  //       //throw new Error({message: 'Database connection error not thrown'});
-  //       // console.log('Here');
-  //       // done();
-  //     })
-  //     .catch((err) => {
-  //       console.log('Here1');
-  //       assert.equal('Authentication failed.', err.message);
-  //       process.env.NODE_ENV = curr_env;
-  //       done();
-  //     })
-  // });
   it('should throw an error when string passed to insertOne()', (done) => {
     const connection = require('../app/db/db.service.js');
     connection.insertOne('hello')
