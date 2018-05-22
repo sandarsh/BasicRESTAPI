@@ -16,8 +16,8 @@ function open() {
   return new Promise((resolve, reject) => {
     mongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
       if (err) {
-        console.log('Error in opening server connection', err);
-        reject(client);
+        // console.log('Error in opening server connection', err);
+        reject(err);
       } else {
         // console.log('Server connection opened');
         resolve(client);
@@ -27,13 +27,15 @@ function open() {
 }
 
 function close(client) {
-  client.close((err) => {
-    if (err) {
-      console.log('Error in closing connection', err);
-    } else {
-      // console.log('Server connection closed');
-    }
-  });
+  if (client !== null) {
+    client.close((err) => {
+      if (err) {
+        console.log('Error in closing connection', err);
+      } else {
+        // console.log('Server connection closed');
+      }
+    });
+  }
 }
 
 
@@ -61,9 +63,8 @@ function findOne(params) {
           reject(e);
         }
       })
-      .catch((client) => {
-        reject();
-        close(client);
+      .catch((err) => {
+        reject(err);
       });
   });
 }
@@ -90,9 +91,8 @@ function insertOne(obj) {
           reject(e);
         }
       })
-      .catch((client) => {
-        reject();
-        close(client);
+      .catch((err) => {
+        reject(err);
       });
   });
 }
@@ -119,9 +119,8 @@ function getAllIds() {
           close(client);
         }
       })
-      .catch((client) => {
-        close(client);
-        reject();
+      .catch((err) => {
+        reject(err);
       });
   });
 }
@@ -155,9 +154,8 @@ function putOne(obj) {
               close(client);
             }
           })
-          .catch((client) => {
-            close(client);
-            reject();
+          .catch((err) => {
+            reject(err);
           });
       })
       .catch((err) => {
@@ -168,14 +166,14 @@ function putOne(obj) {
 
 function deleteOne(id) {
   return new Promise((resolve, reject) => {
-    const newId = id;
-    newId._id = new ObjectId(newId.uid);
-    delete newId.uid;
     open()
       .then((client) => {
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
         try {
+          const newId = id;
+          newId._id = new ObjectId(newId.uid);
+          delete newId.uid;
           collection.deleteOne(newId)
             .then(() => {
               resolve();
@@ -190,14 +188,15 @@ function deleteOne(id) {
           close(client);
         }
       })
-      .catch((client) => {
-        reject();
-        close(client);
+      .catch((err) => {
+        reject(err);
       });
   });
 }
 
 module.exports = {
+  open,
+  close,
   findOne,
   insertOne,
   getAllIds,
