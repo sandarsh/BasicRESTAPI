@@ -1,7 +1,11 @@
 /* eslint no-undef: 1, prefer-arrow-callback: 1 */
 /* eslint space-before-function-paren: 1, global-require: 1  */
+if (process.env.NODE_ENV === 'local'){
+  require('dotenv').config();
+}
 
-// process.env.NODE_ENV = 'test';
+
+process.env.NODE_ENV = 'local';
 
 const request = require('supertest');
 const { assert } = require('chai');
@@ -9,9 +13,46 @@ const expect = require('chai').expect;
 // const should = require('chai').should;
 const async = require('async');
 
+// describe('DB service testing..', () => {
+//   let sample_valid_uid = '5b028d699ecc9d65a85141d4';
+//   let uid;
+//   let uid_empty;
+//   const postObj = {
+//     object : 1,
+//     utility: 'test'
+//   };
+//   const putObj = {
+//     object: 2,
+//     utility: 'test',
+//     message: 'Object put'
+//   };
+//   it('should throw an error when string passed to insertOne()', (done) => {
+//     const connection = require('../app/db/db.service.js');
+//     connection.insertOne('hello')
+//       .then((res) => {
+//         throw new Error('insertOne test failed on passing string');
+//       })
+//       .catch((err) => {
+//         done();
+//       })
+//   });
+//   it('should throw an error when null passed to insertOne()', (done) => {
+//     const connection = require('../app/db/db.service.js');
+//     connection.insertOne(null)
+//       .then((res) => {
+//         throw new Error('insertOne test failed on passing null');
+//       })
+//       .catch((err) => {
+//         done();
+//       })
+//   });
+//
+// });
 
-describe('Loading server for testing..', () => {
+
+describe('API testing..', () => {
   let server;
+  let sample_valid_uid = '5b028d646ecc9d65a85141d4';
   let uid;
   let uid_empty;
   const postObj = {
@@ -218,6 +259,20 @@ describe('Loading server for testing..', () => {
         done();
     })
   });
+  it('should respond to GET /api/objects/:absent_uid with 404 and error message', (done) => {
+    const url = `/api/objects/` + sample_valid_uid;
+    request(server)
+      .get(url)
+      .expect(404)
+      .end((err, res) => {
+        const body = res.body;
+        expect(body).to.be.an('object');
+        expect(body).to.have.all.keys('verb', 'url', 'message');
+        assert.equal(body.verb, 'GET');
+        assert.equal(body.message, 'Object not found');
+        done();
+      })
+  });
   it('should respond to PUT /api/objects/:uid by replacing old object', (done) => {
     const url = `/api/objects/` + uid;
     putObj.uid = uid;
@@ -281,9 +336,25 @@ describe('Loading server for testing..', () => {
         done();
       })
   });
+  it('should respond to PUT /api/objects/:invaliduid with 404 and error message', (done) => {
+    const url = `/api/objects/123`;
+    putObj.uid = '123';
+    request(server)
+      .put(url)
+      .type('json')
+      .send(putObj)
+      .expect(404)
+      .end((err, res) => {
+        const body = res.body;
+        expect(body).to.be.an('object');
+        expect(body).to.have.all.keys('verb', 'url', 'message');
+        assert.equal(body.verb, 'PUT');
+        assert.equal(body.message, 'Object not found');
+        done();
+      })
+  });
   it('should respond to DELETE /api/objects/:uid with 200 and object deleted', (done) => {
     const url = `/api/objects/` + uid;
-    const resp = {};
     request(server)
       .delete(url)
       .type('json')
@@ -291,6 +362,21 @@ describe('Loading server for testing..', () => {
       .end((err, res) => {
         const body = res.body;
         expect(body).to.be.empty;
+        done();
+      })
+  });
+  it('should respond to DELETE /api/objects/:invaliduid with 400 and error message', (done) => {
+    const url = `/api/objects/1234`;
+    request(server)
+      .delete(url)
+      .type('json')
+      .expect(400)
+      .end((err, res) => {
+        const body = res.body;
+        expect(body).to.be.an('object');
+        expect(body).to.have.all.keys('verb', 'url', 'message');
+        assert.equal(body.verb, 'DELETE');
+        assert.equal(body.message, 'Invalid Id');
         done();
       })
   });
