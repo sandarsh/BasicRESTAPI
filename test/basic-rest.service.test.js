@@ -5,7 +5,7 @@ if (process.env.NODE_ENV === 'local'){
 }
 
 
-process.env.NODE_ENV = 'local';
+// process.env.NODE_ENV = 'local';
 
 const request = require('supertest');
 const { assert } = require('chai');
@@ -13,41 +13,41 @@ const expect = require('chai').expect;
 // const should = require('chai').should;
 const async = require('async');
 
-// describe('DB service testing..', () => {
-//   let sample_valid_uid = '5b028d699ecc9d65a85141d4';
-//   let uid;
-//   let uid_empty;
-//   const postObj = {
-//     object : 1,
-//     utility: 'test'
-//   };
-//   const putObj = {
-//     object: 2,
-//     utility: 'test',
-//     message: 'Object put'
-//   };
-//   it('should throw an error when string passed to insertOne()', (done) => {
-//     const connection = require('../app/db/db.service.js');
-//     connection.insertOne('hello')
-//       .then((res) => {
-//         throw new Error('insertOne test failed on passing string');
-//       })
-//       .catch((err) => {
-//         done();
-//       })
-//   });
-//   it('should throw an error when null passed to insertOne()', (done) => {
-//     const connection = require('../app/db/db.service.js');
-//     connection.insertOne(null)
-//       .then((res) => {
-//         throw new Error('insertOne test failed on passing null');
-//       })
-//       .catch((err) => {
-//         done();
-//       })
-//   });
-//
-// });
+describe('DB service testing..', () => {
+  let sample_valid_uid = '5b028d699ecc9d65a85141d4';
+  let uid;
+  let uid_empty;
+  const postObj = {
+    object : 1,
+    utility: 'test'
+  };
+  const putObj = {
+    object: 2,
+    utility: 'test',
+    message: 'Object put'
+  };
+  it('should throw an error when string passed to insertOne()', (done) => {
+    const connection = require('../app/db/db.service.js');
+    connection.insertOne('hello')
+      .then((res) => {
+        throw new Error('insertOne test failed on passing string');
+      })
+      .catch((err) => {
+        done();
+      })
+  });
+  it('should throw an error when null passed to insertOne()', (done) => {
+    const connection = require('../app/db/db.service.js');
+    connection.insertOne(null)
+      .then((res) => {
+        throw new Error('insertOne test failed on passing null');
+      })
+      .catch((err) => {
+        done();
+      })
+  });
+
+});
 
 
 describe('API testing..', () => {
