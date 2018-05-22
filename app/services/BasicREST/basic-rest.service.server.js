@@ -58,7 +58,7 @@ function getOneHandler(req, res) {
       });
   } catch (e) {
     res
-      .status(400)
+      .status(500)
       .json(constructErrorMessage(req, e.message));
   }
 }
