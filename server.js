@@ -69,7 +69,8 @@ app.use('/', routes);
  * Port number to run the app on
  * @type {*|number}
  */
-const PORT = process.env.NODE_PORT || 3000;
+// Port number to run the app on
+const PORT = process.env.PORT || process.env.NODE_PORT || 3000;
 
 /**
  * Run server
