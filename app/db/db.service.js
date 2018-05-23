@@ -35,9 +35,7 @@ let url;
 if (process.env.NODE_ENV === 'local') {
   url = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`;
 } else {
-  url = `mongodb://${process.env.DB_USERNAME}:\
-  ${process.env.DB_PASSWORD}@${process.env.DB_HOST}:\
-  ${process.env.DB_PORT}/${process.env.DB_NAME}`;
+  url = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 }
 
 /**
