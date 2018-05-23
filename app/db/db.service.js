@@ -4,10 +4,13 @@ const ObjectId = require('mongodb').ObjectID;
 const mongoClient = require('mongodb').MongoClient;
 
 // Form connection URL
-let url = 'mongodb://127.0.0.1:27017';
-if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'dev') {
+let url;
+if (process.env.NODE_ENV === 'local') {
+  url = `mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}`;
+} else {
   url = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 }
+console.log('url', url);
 
 const dbName = process.env.DB_NAME || 'test';
 const collectionName = process.env.DB_COLLECTION || 'test';
@@ -77,6 +80,10 @@ function insertOne(obj) {
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
         try {
+          // Testing stub below used to execute catch block
+          if (obj === 'throw test error') {
+            throw new Error('Test throw successful');
+          }
           collection.insertOne(object)
             .then((respObj) => {
               close(client);
@@ -171,6 +178,10 @@ function deleteOne(id) {
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
         try {
+          // Testing stub below used to execute catch block
+          if (id === 'throw test error') {
+            throw new Error('Test throw successful');
+          }
           const newId = id;
           newId._id = new ObjectId(newId.uid);
           delete newId.uid;
@@ -195,6 +206,7 @@ function deleteOne(id) {
 }
 
 module.exports = {
+  url,
   open,
   close,
   findOne,
