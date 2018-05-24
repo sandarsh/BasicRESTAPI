@@ -26,7 +26,8 @@
     "body-parser": "^1.18.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
-    "mongodb": "^3.1.0-beta4"
+    "mongodb": "^3.1.0-beta4",
+    "winston": "^2.4.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
