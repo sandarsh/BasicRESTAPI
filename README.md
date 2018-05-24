@@ -19,8 +19,7 @@
 * Coveralls - Coverage and test reporting
 
 ### Design
-This application follows a Service Oriented Architecture. The application resides in the 'app' folder.
-
+This application follows a Service Oriented Architecture. The application resides in the 'app' folder.  
 The db folder consists of minimal database operations with the only function of fetching the data from mongodb while making sure:
 * The connection is closed and any errors are handled after each request.
 * Convert to and from the 'uid' based objects to '_id' based objects recognised by Mongodb.  
@@ -35,6 +34,7 @@ The services folder has only one service now called 'BasicRest' which contains t
 * Once the above is done, it makes a call to the 'db' service to fetch the object(s) required, translates into required API response and responds back to the requester. 
 
 ### Further Enhancements
+This section mentions further enhancement that can be made to improve this service:
 * User management
     * Generate API keys for users.
     * Authentication, authorization and session management.
