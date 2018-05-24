@@ -4,8 +4,7 @@ node_js:
 branches:
   only:
   - master
-script: npm run test
-after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+after_success: npm run test_coveralls
 deploy:
   provider: heroku
   app: basicrest
