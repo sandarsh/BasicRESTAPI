@@ -13,8 +13,11 @@ Coveralls is used to report testing and code coverage. It integrates with Travis
 To view the coverage report visit - https://coveralls.io/github/sandarsh/BasicRESTAPI?branch=master
 
 ### Running on Local Environment
+#### Requirements:
 * Local installation of mongodb for development and testing  
 * Node.js
+* Run 'npm install' to install all dependencies
+* Run 'npm start' to run the app locally
 
 #### The app gets deployed to heroku automatically if the build passes.  
 #### Visit https://basicrest.herokuapp.com/api/objects to see the app deployed
