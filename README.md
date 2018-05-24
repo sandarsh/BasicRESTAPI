@@ -3,7 +3,8 @@
 
 # BasicRESTAPI
 
-## Prerequisites:
+#### Visit https://basicrest.herokuapp.com/api/objects to see the app deployed
+#### The app gets deployed to heroku automatically if the build passes.
 
 ### Build Tool
 Travis-CI - Pull requests and pushes to master are automatically built by Travis-ci and deployed on heroku if the build passes.
@@ -17,9 +18,18 @@ To view the coverage report visit - https://coveralls.io/github/sandarsh/BasicRE
 #### Requirements:
 * Local installation of mongodb for development and testing  
 * Node.js
+#### Instructions
+* create a .env file in the root directory
+* Edit the .env file to have the following environment variables:  
+    * NODE_ENV=local
+    * NODE_HOST=127.0.0.1
+    * NODE_PORT=3000   (or the port number you want to run locally on)
+    * DB_HOST=127.0.0.1
+    * DB_PORT=27017
+    * DB_NAME=restbasic (or the name of the database you want to use)
+    * DB_COLLECTIOM=local (or the name of the collection you want to use)
 * Run 'npm install' to install all dependencies
 * Run 'npm start' to run the app locally
-
-#### The app gets deployed to heroku automatically if the build passes.  
-#### Visit https://basicrest.herokuapp.com/api/objects to see the app deployed
+* Run 'npm test' to run tests and view coverage report
+  
 
