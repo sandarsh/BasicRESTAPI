@@ -11,7 +11,7 @@ branches:
   - master
 
 script:
-  - ./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha --reporter lcovonly -- -R spec && codecov
+  - ./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec && codecov
 
 deploy:
   provider: heroku
