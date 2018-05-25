@@ -7,10 +7,7 @@
     "start": "node server.js",
     "pretest": "eslint --ignore-path .eslintignore .",
     "test_mocha": "mocha ./test/basic-rest.service.test.js",
-    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha -- -R spec ./test/*",
-    "test_coverage": "nyc --reporter=html --reporter=text mocha",
-    "test_coveralls": "nyc --reporter=lcov --reporter=text-lcov mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
-
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha -- -R spec ./test/*"
   },
   "repository": {
     "type": "git",

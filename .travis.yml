@@ -4,7 +4,6 @@ node_js:
 branches:
   only:
   - master
-after_success: npm run test_coveralls
 deploy:
   provider: heroku
   app: basicrest
