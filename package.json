@@ -8,7 +8,7 @@
     "pretest": "eslint --ignore-path .eslintignore .",
     "test_mocha": "mocha ./test/basic-rest.service.test.js",
     "test": "./node_modules/.bin/mocha",
-    "cover" : "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
+    "cover" : "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha"
   },
   "repository": {
     "type": "git",
