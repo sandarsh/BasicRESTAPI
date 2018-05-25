@@ -12,7 +12,7 @@ branches:
   - master
 
 script:
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec && codecov
+  - istanbul cover _mocha --reporter lcovonly -- -R spec && codecov
 
 deploy:
   provider: heroku
