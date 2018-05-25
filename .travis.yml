@@ -3,6 +3,7 @@ node_js:
 - stable
 
 install:
+  - npm install -g mocha
   - npm install -g istanbul
   - npm install -g codecov
 
@@ -11,8 +12,7 @@ branches:
   - master
 
 script:
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
-  - codecov
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec && codecov
 
 deploy:
   provider: heroku
