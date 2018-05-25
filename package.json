@@ -9,7 +9,7 @@
     "test_mocha": "mocha ./test/basic-rest.service.test.js",
     "test": "./node_modules/.bin/mocha",
     "cover" : "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
