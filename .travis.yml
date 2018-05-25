@@ -1,10 +1,18 @@
 language: node_js
 node_js:
 - stable
+
+install:
+  - npm install -g codecov
+
 branches:
   only:
   - master
-after_success: npm run coveralls
+
+script:
+  - ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov
+
 deploy:
   provider: heroku
   app: basicrest
