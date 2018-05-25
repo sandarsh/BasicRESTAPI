@@ -101,33 +101,33 @@ describe('API testing..', () => {
       }
     ], done);
   });
-  // it('should respond to GET / with 404', (done) => {
-  //   request(server)
-  //     .get('/')
-  //     .expect(404, done);
-  // });
-  // it('should respond to GET /xyz with 404', (done) => {
-  //   request(server)
-  //     .get('/xyz')
-  //     .expect(404, done);
-  // });
-  // it('should respond to GET /api/objects with 200 and an array of items', (done) => {
-  //   request(server)
-  //     .get('/api/objects')
-  //     .expect(200)
-  //     .end((err, res) => {
-  //       const body = res.body;
-  //       assert.isArray(body, 'body is not an array');
-  //       if (body.length !== 0) {
-  //         for (const i in body) {
-  //           expect(body[i]).to.have.all.keys('url');
-  //           assert.equal(body[i].url.split('/')[3], 'api');
-  //           assert.equal(body[i].url.split('/')[4], 'objects');
-  //         }
-  //       }
-  //       done();
-  //     });
-  // });
+  it('should respond to GET / with 404', (done) => {
+    request(server)
+      .get('/')
+      .expect(404, done);
+  });
+  it('should respond to GET /xyz with 404', (done) => {
+    request(server)
+      .get('/xyz')
+      .expect(404, done);
+  });
+  it('should respond to GET /api/objects with 200 and an array of items', (done) => {
+    request(server)
+      .get('/api/objects')
+      .expect(200)
+      .end((err, res) => {
+        const body = res.body;
+        assert.isArray(body, 'body is not an array');
+        if (body.length !== 0) {
+          for (const i in body) {
+            expect(body[i]).to.have.all.keys('url');
+            assert.equal(body[i].url.split('/')[3], 'api');
+            assert.equal(body[i].url.split('/')[4], 'objects');
+          }
+        }
+        done();
+      });
+  });
   it('should respond to empty object POST /api/objects with 201 and the new object', (done) => {
     request(server)
       .post('/api/objects')
