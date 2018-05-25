@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/sandarsh/BasicRESTAPI.svg?branch=master)](https://travis-ci.org/sandarsh/BasicRESTAPI)
+[![codecov](https://codecov.io/gh/sandarsh/BasicRESTAPI/branch/master/graph/badge.svg)](https://codecov.io/gh/sandarsh/BasicRESTAPI)
 
 # BasicRESTAPI
 
