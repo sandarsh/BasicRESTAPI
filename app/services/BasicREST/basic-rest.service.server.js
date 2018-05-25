@@ -41,6 +41,10 @@ function constructErrorMessage(req, s) {
  * @returns {string} The url generated for that id.
  */
 function constructIdUrl(req, id) {
+  if (req.url[req.url.length - 1] === '/') {
+    // Check if url ends with '/' and form query params accordingly
+    return `http://${req.headers.host}${req.url}${id}`;
+  }
   return `http://${req.headers.host}${req.url}/${id}`;
 }
 
