@@ -69,7 +69,7 @@ To view the coverage report visit - https://codecov.io/gh/sandarsh/BasicRESTAPI
     * DB_HOST=127.0.0.1
     * DB_PORT=27017
     * DB_NAME=restbasic (or the name of the database you want to use)
-    * DB_COLLECTIOM=local (or the name of the collection you want to use)
+    * DB_COLLECTION=local (or the name of the collection you want to use)
 * Run 'npm install' to install all dependencies
 * Run 'npm start' to run the app locally
 * Run 'npm test' to run tests and view coverage report

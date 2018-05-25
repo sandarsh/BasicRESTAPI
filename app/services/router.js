@@ -16,6 +16,8 @@ const router = require('express').Router();
  * Load Services
  */
 const basicRestService = require('./BasicREST/basic-rest.service.server');
+const constructErrorMessage = require('./BasicREST/basic-rest.service.server').constructErrorMessage;
+
 /*
 Include more services here..
 .
@@ -39,7 +41,7 @@ Add routes to other services here
 /**
  * Route to respond to undefined routes with 404
  */
-router.use('/', (req, res) => (res.sendStatus(404)));
+router.use('/', (req, res) => (res.status(404).send(constructErrorMessage(req, 'Not Found'))));
 
 /**
  * Export router module to use in server.js
