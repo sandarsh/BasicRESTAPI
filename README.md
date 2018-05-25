@@ -16,7 +16,7 @@
 * Mocha - Testing framework
 * Supertest - library for testing HTTP servers
 * Travis-CI - Build
-* Coveralls - Coverage and test reporting
+* Codecov - Coverage and test reporting
 
 ### Design
 This application follows a Service Oriented Architecture. The application resides in the 'app' folder.  
@@ -53,8 +53,8 @@ Travis-CI - Pull requests and pushes to master are automatically built by Travis
 Visit this link to check the build status - https://travis-ci.org/sandarsh/BasicRESTAPI
 
 ### Coverage
-Coveralls is used to report testing and code coverage. It integrates with Travis seamlessly to provide covergate and test reports for build that have passed on Travis.
-To view the coverage report visit - https://coveralls.io/github/sandarsh/BasicRESTAPI?branch=master
+Codecov is used to report testing and code coverage. It integrates with Travis seamlessly to provide coverage and test reports for build that have passed on Travis.
+To view the coverage report visit - https://codecov.io/gh/sandarsh/BasicRESTAPI
 
 ### Running on Local Environment
 #### Requirements:
